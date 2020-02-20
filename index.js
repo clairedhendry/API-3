@@ -13,10 +13,12 @@ function checkForBreed(responseJson, breed) {
     const breedArray = Object.keys(responseJson.message);
     const found = breedArray.find(element => element === breed);
     if (found === breed) {
+
         fetchDogBreedImage(breed);
     
     } else {
-        alert("dog breed not found");
+        $("dog-images, img").remove();
+        $(".no-dogs").removeClass("hidden");
     }
 }
 
@@ -35,12 +37,12 @@ function fetchDogBreedImage(breed) {
 
 function displayDogs(responseJson) {
    $("dog-images, img").remove();
+   $(".no-dogs").addClass("hidden");
    console.log(responseJson.message);
    $(".dog-images").removeClass("hidden");
-   
 
    let dogImage = generateDogImage(responseJson);
-  
+
    $(".dog-images").append(dogImage);
    
    
